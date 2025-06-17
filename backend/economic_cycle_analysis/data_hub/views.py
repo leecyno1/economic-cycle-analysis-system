@@ -8,6 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 from datetime import datetime, timedelta
 from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.pagination import PageNumberPagination
 
 from .models import IndicatorCategory, Indicator, IndicatorData
 from .serializers import (
@@ -15,6 +17,8 @@ from .serializers import (
     IndicatorDataSerializer, IndicatorDataBulkSerializer,
     IndicatorStatsSerializer
 )
+from .wind_integration_service import wind_integration_service
+from .wind_data_collector import WindConnectionConfig
 
 
 class IndicatorCategoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -248,3 +252,207 @@ class IndicatorDataViewSet(viewsets.ReadOnlyModelViewSet):
             'indicator_name': indicator.name,
             'data': data
         })
+
+
+@api_view(['GET'])
+def wind_status(request):
+    """获取Wind数据源状态"""
+    try:
+        status = wind_integration_service.get_integration_status()
+        return Response({
+            'success': True,
+            'data': status
+        })
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['POST'])
+def wind_test_connection(request):
+    """测试Wind连接"""
+    try:
+        # 获取连接配置
+        username = request.data.get('username', '17600806220')
+        password = request.data.get('password', 'iv19whot')
+        
+        # 创建配置
+        wind_config = WindConnectionConfig(
+            username=username,
+            password=password
+        )
+        
+        # 测试连接
+        test_result = wind_integration_service.test_wind_connectivity()
+        
+        return Response({
+            'success': True,
+            'data': test_result
+        })
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['POST'])
+def wind_initialize_indicators(request):
+    """初始化Wind指标"""
+    try:
+        result = wind_integration_service.initialize_wind_indicators()
+        
+        return Response({
+            'success': result.success,
+            'data': {
+                'total_indicators': result.total_indicators,
+                'successful_indicators': result.successful_indicators,
+                'failed_indicators': result.failed_indicators,
+                'execution_time': result.execution_time,
+                'errors': result.errors
+            }
+        })
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['POST'])
+def wind_collect_data(request):
+    """收集Wind数据"""
+    try:
+        # 获取参数
+        indicator_codes = request.data.get('indicator_codes')
+        start_date = request.data.get('start_date')
+        end_date = request.data.get('end_date')
+        force_update = request.data.get('force_update', False)
+        
+        # 执行数据收集
+        result = wind_integration_service.collect_wind_data_batch(
+            indicator_codes=indicator_codes,
+            start_date=start_date,
+            end_date=end_date,
+            force_update=force_update
+        )
+        
+        return Response({
+            'success': result.success,
+            'data': {
+                'total_indicators': result.total_indicators,
+                'successful_indicators': result.successful_indicators,
+                'failed_indicators': result.failed_indicators,
+                'total_data_points': result.total_data_points,
+                'execution_time': result.execution_time,
+                'errors': result.errors[:10]  # 只返回前10个错误
+            }
+        })
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['POST'])
+def wind_sync_indicators(request):
+    """同步Wind指标与现有指标体系"""
+    try:
+        result = wind_integration_service.sync_with_existing_indicators()
+        
+        return Response({
+            'success': result.success,
+            'data': {
+                'successful_indicators': result.successful_indicators,
+                'failed_indicators': result.failed_indicators,
+                'execution_time': result.execution_time,
+                'errors': result.errors
+            }
+        })
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['GET'])
+def wind_supported_indicators(request):
+    """获取Wind支持的指标列表"""
+    try:
+        from .wind_data_collector import WindDataCollector
+        
+        collector = WindDataCollector()
+        mappings = collector.wind_mappings
+        
+        # 格式化返回数据
+        indicators = []
+        for code, config in mappings.items():
+            indicators.append({
+                'code': code,
+                'wind_code': config['wind_code'],
+                'description': config['description'],
+                'data_type': config['data_type'],
+                'frequency': config['frequency'],
+                'dimension': config.get('dimension', ''),
+                'industry': config.get('industry', '')
+            })
+        
+        return Response({
+            'success': True,
+            'data': {
+                'total_count': len(indicators),
+                'indicators': indicators
+            }
+        })
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@api_view(['GET'])
+def wind_data_quality_report(request):
+    """获取Wind数据质量报告"""
+    try:
+        # 获取Wind指标的质量报告
+        wind_indicators = Indicator.objects.filter(source__contains='wind')
+        
+        quality_reports = DataQualityReport.objects.filter(
+            indicator__in=wind_indicators
+        ).select_related('indicator').order_by('-report_date')
+        
+        # 分页
+        paginator = PageNumberPagination()
+        paginator.page_size = 20
+        result_page = paginator.paginate_queryset(quality_reports, request)
+        
+        # 序列化数据
+        serializer = DataQualityReportSerializer(result_page, many=True)
+        
+        # 统计信息
+        total_reports = quality_reports.count()
+        quality_distribution = {
+            'excellent': quality_reports.filter(overall_quality='excellent').count(),
+            'good': quality_reports.filter(overall_quality='good').count(),
+            'fair': quality_reports.filter(overall_quality='fair').count(),
+            'poor': quality_reports.filter(overall_quality='poor').count()
+        }
+        
+        return paginator.get_paginated_response({
+            'quality_reports': serializer.data,
+            'statistics': {
+                'total_reports': total_reports,
+                'quality_distribution': quality_distribution
+            }
+        })
+        
+    except Exception as e:
+        return Response({
+            'success': False,
+            'error': str(e)
+        }, status=500)

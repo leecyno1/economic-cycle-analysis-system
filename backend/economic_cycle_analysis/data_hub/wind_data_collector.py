@@ -113,43 +113,57 @@ class WindDataCollector:
                 'wind_code': 'M0000612',  # CPI当月同比
                 'data_type': 'macro',
                 'frequency': 'M',
-                'description': 'CPI当月同比(%)'
+                'description': 'CPI当月同比(%)',
+                'dimension': '景气指数',
+                'industry': '宏观经济'
             },
             'WIND_CPI_MOM': {
                 'wind_code': 'M0000613',  # CPI当月环比
                 'data_type': 'macro',
                 'frequency': 'M',
-                'description': 'CPI当月环比(%)'
+                'description': 'CPI当月环比(%)',
+                'dimension': '景气指数',
+                'industry': '宏观经济'
             },
             'WIND_PPI_YOY': {
                 'wind_code': 'M0001227',  # PPI当月同比
                 'data_type': 'macro',
                 'frequency': 'M',
-                'description': 'PPI当月同比(%)'
+                'description': 'PPI当月同比(%)',
+                'dimension': '景气指数',
+                'industry': '宏观经济'
             },
             'WIND_GDP_YOY': {
                 'wind_code': 'M0000545',  # GDP当季同比
                 'data_type': 'macro',
                 'frequency': 'Q',
-                'description': 'GDP当季同比(%)'
+                'description': 'GDP当季同比(%)',
+                'dimension': '景气指数',
+                'industry': '宏观经济'
             },
             'WIND_M2_YOY': {
                 'wind_code': 'M0001380',  # M2同比增长
                 'data_type': 'macro',
                 'frequency': 'M',
-                'description': 'M2同比增长(%)'
+                'description': 'M2同比增长(%)',
+                'dimension': '流动性',
+                'industry': '宏观经济'
             },
             'WIND_PMI_MFG': {
                 'wind_code': 'M0017126',  # 制造业PMI
                 'data_type': 'macro',
                 'frequency': 'M',
-                'description': '制造业PMI'
+                'description': '制造业PMI',
+                'dimension': '景气指数',
+                'industry': '制造业'
             },
             'WIND_PMI_NON_MFG': {
                 'wind_code': 'M0017127',  # 非制造业PMI
                 'data_type': 'macro',
                 'frequency': 'M',
-                'description': '非制造业PMI'
+                'description': '非制造业PMI',
+                'dimension': '景气指数',
+                'industry': '服务业'
             },
             
             # ===== 股票指数 =====
@@ -157,25 +171,33 @@ class WindDataCollector:
                 'wind_code': '000300.SH',  # 沪深300指数
                 'data_type': 'index',
                 'frequency': 'D',
-                'description': '沪深300指数'
+                'description': '沪深300指数',
+                'dimension': '技术面',
+                'industry': '股票市场'
             },
             'WIND_SSE_COMP': {
                 'wind_code': '000001.SH',  # 上证综指
                 'data_type': 'index',
                 'frequency': 'D',
-                'description': '上证综合指数'
+                'description': '上证综合指数',
+                'dimension': '技术面',
+                'industry': '股票市场'
             },
             'WIND_SZSE_COMP': {
                 'wind_code': '399001.SZ',  # 深证成指
                 'data_type': 'index',
                 'frequency': 'D',
-                'description': '深证成份指数'
+                'description': '深证成份指数',
+                'dimension': '技术面',
+                'industry': '股票市场'
             },
             'WIND_GEM': {
                 'wind_code': '399006.SZ',  # 创业板指数
                 'data_type': 'index',
                 'frequency': 'D',
-                'description': '创业板指数'
+                'description': '创业板指数',
+                'dimension': '技术面',
+                'industry': '股票市场'
             },
             
             # ===== 债券利率 =====
@@ -183,93 +205,265 @@ class WindDataCollector:
                 'wind_code': 'M1004263',  # 10年期国债收益率
                 'data_type': 'bond',
                 'frequency': 'D',
-                'description': '10年期国债收益率(%)'
+                'description': '10年期国债收益率(%)',
+                'dimension': '流动性',
+                'industry': '债券市场'
             },
             'WIND_1Y_TREASURY': {
                 'wind_code': 'M1004260',  # 1年期国债收益率
                 'data_type': 'bond',
                 'frequency': 'D',
-                'description': '1年期国债收益率(%)'
+                'description': '1年期国债收益率(%)',
+                'dimension': '流动性',
+                'industry': '债券市场'
             },
             'WIND_SHIBOR_1M': {
                 'wind_code': 'M0017142',  # 1个月SHIBOR
                 'data_type': 'bond',
                 'frequency': 'D',
-                'description': '1个月SHIBOR(%)'
+                'description': '1个月SHIBOR(%)',
+                'dimension': '流动性',
+                'industry': '债券市场'
+            },
+            
+            # ===== 行业指数 =====
+            'WIND_CSI_CONSUMER': {
+                'wind_code': '000932.SH',  # 中证消费指数
+                'data_type': 'industry_index',
+                'frequency': 'D',
+                'description': '中证消费指数',
+                'dimension': '技术面',
+                'industry': '消费'
+            },
+            'WIND_CSI_FINANCE': {
+                'wind_code': '000934.SH',  # 中证金融指数
+                'data_type': 'industry_index',
+                'frequency': 'D',
+                'description': '中证金融指数',
+                'dimension': '技术面',
+                'industry': '金融'
+            },
+            'WIND_CSI_MATERIAL': {
+                'wind_code': '000935.SH',  # 中证材料指数
+                'data_type': 'industry_index',
+                'frequency': 'D',
+                'description': '中证材料指数',
+                'dimension': '技术面',
+                'industry': '材料'
+            },
+            'WIND_CSI_ENERGY': {
+                'wind_code': '000936.SH',  # 中证能源指数
+                'data_type': 'industry_index',
+                'frequency': 'D',
+                'description': '中证能源指数',
+                'dimension': '技术面',
+                'industry': '能源'
+            },
+            'WIND_CSI_HEALTHCARE': {
+                'wind_code': '000933.SH',  # 中证医药指数
+                'data_type': 'industry_index',
+                'frequency': 'D',
+                'description': '中证医药指数',
+                'dimension': '技术面',
+                'industry': '医药'
+            },
+            'WIND_CSI_TECH': {
+                'wind_code': '000937.SH',  # 中证科技指数
+                'data_type': 'industry_index',
+                'frequency': 'D',
+                'description': '中证科技指数',
+                'dimension': '技术面',
+                'industry': 'TMT'
             },
             
             # ===== 商品期货 =====
             'WIND_CRUDE_OIL': {
-                'wind_code': 'SC00.SHF',  # 原油期货主力合约
+                'wind_code': 'SC.INE',  # 原油期货主力合约
                 'data_type': 'commodity',
                 'frequency': 'D',
-                'description': '原油期货主力合约'
-            },
-            'WIND_GOLD': {
-                'wind_code': 'AU00.SHF',  # 黄金期货主力合约
-                'data_type': 'commodity',
-                'frequency': 'D',
-                'description': '黄金期货主力合约'
+                'description': '原油期货价格',
+                'dimension': '基本面',
+                'industry': '能源'
             },
             'WIND_COPPER': {
-                'wind_code': 'CU00.SHF',  # 铜期货主力合约
+                'wind_code': 'CU.SHF',  # 沪铜期货主力合约
                 'data_type': 'commodity',
                 'frequency': 'D',
-                'description': '铜期货主力合约'
+                'description': '铜期货价格',
+                'dimension': '基本面',
+                'industry': '有色金属'
             },
-            
-            # ===== 行业指数 =====
-            'WIND_SEMICONDUCTOR': {
-                'wind_code': '884051.WI',  # 半导体指数
-                'data_type': 'industry',
+            'WIND_STEEL_REBAR': {
+                'wind_code': 'RB.SHF',  # 螺纹钢期货主力合约
+                'data_type': 'commodity',
                 'frequency': 'D',
-                'description': '申万半导体指数'
+                'description': '螺纹钢期货价格',
+                'dimension': '基本面',
+                'industry': '钢铁'
             },
-            'WIND_BANKING': {
-                'wind_code': '801780.SI',  # 银行指数
-                'data_type': 'industry',
+            'WIND_CORN': {
+                'wind_code': 'C.DCE',  # 玉米期货主力合约
+                'data_type': 'commodity',
                 'frequency': 'D',
-                'description': '申万银行指数'
-            },
-            'WIND_REAL_ESTATE': {
-                'wind_code': '801180.SI',  # 房地产指数
-                'data_type': 'industry',
-                'frequency': 'D',
-                'description': '申万房地产指数'
+                'description': '玉米期货价格',
+                'dimension': '基本面',
+                'industry': '农业'
             },
             
             # ===== 外汇汇率 =====
-            'WIND_USDCNY': {
-                'wind_code': 'USDCNY.EX',  # 美元兑人民币
+            'WIND_USD_CNY': {
+                'wind_code': 'USDCNY.EX',  # 美元兑人民币即期汇率
                 'data_type': 'fx',
                 'frequency': 'D',
-                'description': '美元兑人民币汇率'
+                'description': '美元兑人民币汇率',
+                'dimension': '流动性',
+                'industry': '外汇'
             },
-            'WIND_EURCNY': {
-                'wind_code': 'EURCNY.EX',  # 欧元兑人民币
+            'WIND_EUR_CNY': {
+                'wind_code': 'EURCNY.EX',  # 欧元兑人民币即期汇率
                 'data_type': 'fx',
                 'frequency': 'D',
-                'description': '欧元兑人民币汇率'
+                'description': '欧元兑人民币汇率',
+                'dimension': '流动性',
+                'industry': '外汇'
             },
             
-            # ===== 美国主要指标 =====
-            'WIND_SPX': {
-                'wind_code': 'SPX.GI',  # 标普500指数
-                'data_type': 'us_index',
-                'frequency': 'D',
-                'description': '标普500指数'
+            # ===== 房地产指标 =====
+            'WIND_HOUSE_PRICE_70': {
+                'wind_code': 'M0041652',  # 70个大中城市房价指数
+                'data_type': 'real_estate',
+                'frequency': 'M',
+                'description': '70个大中城市房价指数',
+                'dimension': '基本面',
+                'industry': '房地产'
             },
-            'WIND_NASDAQ': {
-                'wind_code': 'IXIC.GI',  # 纳斯达克指数
-                'data_type': 'us_index',
-                'frequency': 'D',
-                'description': '纳斯达克综合指数'
+            'WIND_LAND_PREMIUM': {
+                'wind_code': 'M0041653',  # 土地成交溢价率
+                'data_type': 'real_estate',
+                'frequency': 'M',
+                'description': '土地成交溢价率(%)',
+                'dimension': '基本面',
+                'industry': '房地产'
             },
-            'WIND_DJI': {
-                'wind_code': 'DJI.GI',  # 道琼斯指数
-                'data_type': 'us_index',
+            
+            # ===== 社会融资指标 =====
+            'WIND_SOCIAL_FINANCING': {
+                'wind_code': 'M0017142',  # 社会融资规模存量
+                'data_type': 'finance',
+                'frequency': 'M',
+                'description': '社会融资规模存量(万亿元)',
+                'dimension': '流动性',
+                'industry': '金融'
+            },
+            'WIND_NEW_LOANS': {
+                'wind_code': 'M0001385',  # 新增人民币贷款
+                'data_type': 'finance',
+                'frequency': 'M',
+                'description': '新增人民币贷款(亿元)',
+                'dimension': '流动性',
+                'industry': '金融'
+            },
+            
+            # ===== 进出口贸易 =====
+            'WIND_EXPORT_YOY': {
+                'wind_code': 'M0000607',  # 出口金额当月同比
+                'data_type': 'trade',
+                'frequency': 'M',
+                'description': '出口金额当月同比(%)',
+                'dimension': '基本面',
+                'industry': '对外贸易'
+            },
+            'WIND_IMPORT_YOY': {
+                'wind_code': 'M0000608',  # 进口金额当月同比
+                'data_type': 'trade',
+                'frequency': 'M',
+                'description': '进口金额当月同比(%)',
+                'dimension': '基本面',
+                'industry': '对外贸易'
+            },
+            
+            # ===== 工业生产指标 =====
+            'WIND_INDUSTRIAL_PROD': {
+                'wind_code': 'M0000564',  # 工业增加值当月同比
+                'data_type': 'industrial',
+                'frequency': 'M',
+                'description': '工业增加值当月同比(%)',
+                'dimension': '景气指数',
+                'industry': '工业'
+            },
+            'WIND_ELECTRICITY_PROD': {
+                'wind_code': 'M0000565',  # 发电量当月同比
+                'data_type': 'industrial',
+                'frequency': 'M',
+                'description': '发电量当月同比(%)',
+                'dimension': '景气指数',
+                'industry': '电力'
+            },
+            
+            # ===== 消费指标 =====
+            'WIND_RETAIL_SALES': {
+                'wind_code': 'M0000566',  # 社会消费品零售总额当月同比
+                'data_type': 'consumption',
+                'frequency': 'M',
+                'description': '社会消费品零售总额当月同比(%)',
+                'dimension': '景气指数',
+                'industry': '消费'
+            },
+            'WIND_AUTO_SALES': {
+                'wind_code': 'M0000567',  # 汽车销量当月同比
+                'data_type': 'consumption',
+                'frequency': 'M',
+                'description': '汽车销量当月同比(%)',
+                'dimension': '景气指数',
+                'industry': '汽车'
+            },
+            
+            # ===== 投资指标 =====
+            'WIND_FAI_YTD': {
+                'wind_code': 'M0000570',  # 固定资产投资完成额累计同比
+                'data_type': 'investment',
+                'frequency': 'M',
+                'description': '固定资产投资完成额累计同比(%)',
+                'dimension': '景气指数',
+                'industry': '投资'
+            },
+            'WIND_REAL_ESTATE_INV': {
+                'wind_code': 'M0000571',  # 房地产开发投资完成额累计同比
+                'data_type': 'investment',
+                'frequency': 'M',
+                'description': '房地产开发投资完成额累计同比(%)',
+                'dimension': '景气指数',
+                'industry': '房地产'
+            },
+            
+            # ===== 就业指标 =====
+            'WIND_URBAN_UNEMPLOYMENT': {
+                'wind_code': 'M0000572',  # 城镇调查失业率
+                'data_type': 'employment',
+                'frequency': 'M',
+                'description': '城镇调查失业率(%)',
+                'dimension': '景气指数',
+                'industry': '劳动力市场'
+            },
+            
+            # ===== 波动率指标 =====
+            'WIND_VIX_CHINA': {
+                'wind_code': 'CVIX.SH',  # 中国波指
+                'data_type': 'volatility',
                 'frequency': 'D',
-                'description': '道琼斯工业指数'
+                'description': '中国波指',
+                'dimension': '波动率',
+                'industry': '股票市场'
+            },
+            
+            # ===== ESG指标 =====
+            'WIND_CSI_ESG': {
+                'wind_code': '931151.CSI',  # 中证ESG指数
+                'data_type': 'esg',
+                'frequency': 'D',
+                'description': '中证ESG指数',
+                'dimension': 'ESG',
+                'industry': 'ESG'
             }
         }
     
