@@ -1,0 +1,537 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2024-12-19",
+    "total_indicators": 1064,
+    "data_source": "兴证策略行业中观&拥挤度数据库",
+    "coverage": {
+      "industries": 7,
+      "sub_industries": 37,
+      "sectors": 200
+    },
+    "distribution": {
+      "消费": 312,
+      "周期": 288,
+      "制造": 184,
+      "TMT": 152,
+      "医药": 72,
+      "金融地产": 56
+    }
+  },
+  "dimensions": {
+    "core_dimensions": [
+      "景气指数",
+      "估值",
+      "拥挤度",
+      "技术面",
+      "基本面",
+      "动量",
+      "情绪",
+      "流动性"
+    ],
+    "enhanced_dimensions": [
+      "波动率",
+      "相关性",
+      "季节性",
+      "政策敏感度",
+      "供应链",
+      "创新",
+      "ESG",
+      "风险"
+    ]
+  },
+  "indicators": {
+    "TMT_COMM_OPTICAL_MODULE_PPI": {
+      "id": "TMT_COMM_OPTICAL_MODULE_PPI",
+      "name_cn": "通信设备制造业PPI",
+      "name_en": "Communication Equipment PPI",
+      "category": "TMT",
+      "sub_category": "通信",
+      "sector": "光模块",
+      "indicator_type": "价格",
+      "unit": "%",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_ppi",
+      "calculation_method": "ppi_communication_equipment",
+      "investment_significance": "光通信产业链成本传导，设备制造盈利能力",
+      "importance_level": 4,
+      "data_availability": "high",
+      "implementation_phase": 1
+    },
+    "TMT_ELEC_IC_PRODUCTION": {
+      "id": "TMT_ELEC_IC_PRODUCTION",
+      "name_cn": "集成电路产量",
+      "name_en": "Integrated Circuit Production",
+      "category": "TMT",
+      "sub_category": "电子",
+      "sector": "半导体",
+      "indicator_type": "产量",
+      "unit": "亿块",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_industrial_production_yoy",
+      "calculation_method": "industrial_production_ic",
+      "investment_significance": "半导体产业核心，科技制造业景气度",
+      "importance_level": 5,
+      "data_availability": "high",
+      "implementation_phase": 1
+    },
+    "TMT_ELEC_LAPTOP_SALES": {
+      "id": "TMT_ELEC_LAPTOP_SALES",
+      "name_cn": "笔记本电脑销量",
+      "name_en": "Laptop Sales",
+      "category": "TMT",
+      "sub_category": "电子",
+      "sector": "消费电子",
+      "indicator_type": "销量",
+      "unit": "万台",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "macro_china_retail_total",
+      "calculation_method": "retail_electronics_laptop",
+      "investment_significance": "消费电子终端需求，远程办公趋势",
+      "importance_level": 3,
+      "data_availability": "medium",
+      "implementation_phase": 2
+    },
+    "CYCLE_CHEM_SODA_ASH_PRODUCTION": {
+      "id": "CYCLE_CHEM_SODA_ASH_PRODUCTION",
+      "name_cn": "纯碱产量",
+      "name_en": "Soda Ash Production",
+      "category": "周期",
+      "sub_category": "基础化工",
+      "sector": "纯碱",
+      "indicator_type": "产量",
+      "unit": "万吨",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_industrial_production_yoy",
+      "calculation_method": "industrial_production_soda_ash",
+      "investment_significance": "玻璃、化工下游需求，房地产产业链",
+      "importance_level": 4,
+      "data_availability": "high",
+      "implementation_phase": 1
+    },
+    "CYCLE_CHEM_PESTICIDE_PRODUCTION": {
+      "id": "CYCLE_CHEM_PESTICIDE_PRODUCTION",
+      "name_cn": "化学农药原药产量",
+      "name_en": "Chemical Pesticide Production",
+      "category": "周期",
+      "sub_category": "基础化工",
+      "sector": "农药",
+      "indicator_type": "产量",
+      "unit": "万吨",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_industrial_production_yoy",
+      "calculation_method": "industrial_production_pesticide",
+      "investment_significance": "农业生产投入，农产品价格传导",
+      "importance_level": 3,
+      "data_availability": "high",
+      "implementation_phase": 2
+    },
+    "CYCLE_COAL_THERMAL_PRICE": {
+      "id": "CYCLE_COAL_THERMAL_PRICE",
+      "name_cn": "环渤海动力煤价格",
+      "name_en": "Bohai Rim Thermal Coal Price",
+      "category": "周期",
+      "sub_category": "煤炭",
+      "sector": "动力煤",
+      "indicator_type": "价格",
+      "unit": "元/吨",
+      "frequency": "weekly",
+      "data_source": "akshare",
+      "api_function": "energy_oil_hist",
+      "calculation_method": "energy_coal_bohai_rim",
+      "investment_significance": "电力成本核心，能源供需平衡",
+      "importance_level": 5,
+      "data_availability": "high",
+      "implementation_phase": 1
+    },
+    "CYCLE_TRANSPORT_EXPRESS_DELIVERY": {
+      "id": "CYCLE_TRANSPORT_EXPRESS_DELIVERY",
+      "name_cn": "快递业务量",
+      "name_en": "Express Delivery Volume",
+      "category": "周期",
+      "sub_category": "交通运输",
+      "sector": "物流",
+      "indicator_type": "销量",
+      "unit": "亿件",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_postal_telecommunicational",
+      "calculation_method": "express_delivery_volume",
+      "investment_significance": "电商活跃度，消费物流需求",
+      "importance_level": 4,
+      "data_availability": "high",
+      "implementation_phase": 1
+    },
+    "CONSUMER_AGRI_RICE_PRICE": {
+      "id": "CONSUMER_AGRI_RICE_PRICE",
+      "name_cn": "稻米价格",
+      "name_en": "Rice Price",
+      "category": "消费",
+      "sub_category": "农林牧渔",
+      "sector": "种植业",
+      "indicator_type": "价格",
+      "unit": "元/吨",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "futures_main_sina",
+      "calculation_method": "agricultural_product_rice",
+      "investment_significance": "粮食安全，农产品通胀传导",
+      "importance_level": 4,
+      "data_availability": "high",
+      "implementation_phase": 1
+    },
+    "CONSUMER_FOOD_SNACK_SALES": {
+      "id": "CONSUMER_FOOD_SNACK_SALES",
+      "name_cn": "零食坚果特产销售额",
+      "name_en": "Snack Food Sales",
+      "category": "消费",
+      "sub_category": "食品饮料",
+      "sector": "休闲食品",
+      "indicator_type": "销量",
+      "unit": "亿元",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "macro_china_retail_total",
+      "calculation_method": "retail_snack_foods",
+      "investment_significance": "年轻消费群体偏好，消费升级",
+      "importance_level": 3,
+      "data_availability": "medium",
+      "implementation_phase": 2
+    },
+    "CONSUMER_LIGHT_PRINTING_ELECTRICITY": {
+      "id": "CONSUMER_LIGHT_PRINTING_ELECTRICITY",
+      "name_cn": "印刷业用电量",
+      "name_en": "Printing Industry Electricity",
+      "category": "消费",
+      "sub_category": "轻工制造",
+      "sector": "包装印刷",
+      "indicator_type": "其他",
+      "unit": "亿���瓦时",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "energy_oil_detail",
+      "calculation_method": "industry_electricity_printing",
+      "investment_significance": "包装需求，电商物流活跃度",
+      "importance_level": 2,
+      "data_availability": "medium",
+      "implementation_phase": 3
+    },
+    "MFG_MACHINERY_EXCAVATOR_SALES": {
+      "id": "MFG_MACHINERY_EXCAVATOR_SALES",
+      "name_cn": "挖掘机销量",
+      "name_en": "Excavator Sales",
+      "category": "制造",
+      "sub_category": "机械设备",
+      "sector": "工程机械",
+      "indicator_type": "销量",
+      "unit": "台",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "macro_china_industrial_production_yoy",
+      "calculation_method": "machinery_excavator_sales",
+      "investment_significance": "基建投资先行指标，工程建设活跃度",
+      "importance_level": 5,
+      "data_availability": "medium",
+      "implementation_phase": 1
+    },
+    "MFG_MACHINERY_CRANE_SALES": {
+      "id": "MFG_MACHINERY_CRANE_SALES",
+      "name_cn": "起重机销量",
+      "name_en": "Crane Sales",
+      "category": "制造",
+      "sub_category": "机械设备",
+      "sector": "工程机械",
+      "indicator_type": "销量",
+      "unit": "台",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "macro_china_industrial_production_yoy",
+      "calculation_method": "machinery_crane_sales",
+      "investment_significance": "建筑施工强度，基建项目进度",
+      "importance_level": 4,
+      "data_availability": "medium",
+      "implementation_phase": 2
+    },
+    "MFG_POWER_INVESTMENT": {
+      "id": "MFG_POWER_INVESTMENT",
+      "name_cn": "电力工程投资完成额",
+      "name_en": "Power Engineering Investment",
+      "category": "制造",
+      "sub_category": "电力设备",
+      "sector": "配电设备",
+      "indicator_type": "其他",
+      "unit": "亿元",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_fixed_asset_investment",
+      "calculation_method": "fixed_investment_power",
+      "investment_significance": "电网建设投资，能源基础设施",
+      "importance_level": 3,
+      "data_availability": "high",
+      "implementation_phase": 2
+    },
+    "PHARMA_HEALTHCARE_CPI": {
+      "id": "PHARMA_HEALTHCARE_CPI",
+      "name_cn": "医疗保健CPI",
+      "name_en": "Healthcare CPI",
+      "category": "医药",
+      "sub_category": "医药生物",
+      "sector": "医药商业",
+      "indicator_type": "价格",
+      "unit": "%",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_cpi",
+      "calculation_method": "cpi_healthcare",
+      "investment_significance": "医疗成本通胀，医保支付压力",
+      "importance_level": 3,
+      "data_availability": "high",
+      "implementation_phase": 2
+    },
+    "FINANCE_INSURANCE_PREMIUM": {
+      "id": "FINANCE_INSURANCE_PREMIUM",
+      "name_cn": "原保险保费收入",
+      "name_en": "Original Insurance Premium",
+      "category": "金融地产",
+      "sub_category": "非银金融",
+      "sector": "保险",
+      "indicator_type": "收入",
+      "unit": "亿元",
+      "frequency": "monthly",
+      "data_source": "akshare",
+      "api_function": "macro_china_insurance",
+      "calculation_method": "insurance_premium_income",
+      "investment_significance": "风险保障需求，财富管理发展",
+      "importance_level": 3,
+      "data_availability": "high",
+      "implementation_phase": 2
+    }
+  },
+  "composite_indicators": {
+    "CALC_TMT_PROSPERITY_INDEX": {
+      "id": "CALC_TMT_PROSPERITY_INDEX",
+      "name_cn": "TMT行业景气度指数",
+      "name_en": "TMT Prosperity Index",
+      "category": "计算指标",
+      "sub_category": "行业景气度",
+      "sector": "综合指数",
+      "indicator_type": "指数",
+      "unit": "指数",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "weighted_composite",
+      "calculation_method": "weighted_composite",
+      "components": [
+        "TMT_COMM_OPTICAL_MODULE_PPI",
+        "TMT_ELEC_IC_PRODUCTION",
+        "TMT_ELEC_LAPTOP_SALES"
+      ],
+      "weights": [0.3, 0.4, 0.3],
+      "investment_significance": "TMT行业综合景气度，科技周期判断",
+      "importance_level": 5,
+      "data_availability": "依赖组成指标",
+      "implementation_phase": 3
+    },
+    "CALC_CYCLICAL_PROSPERITY_INDEX": {
+      "id": "CALC_CYCLICAL_PROSPERITY_INDEX",
+      "name_cn": "周期行业景气度指数",
+      "name_en": "Cyclical Prosperity Index",
+      "category": "计算指标",
+      "sub_category": "行业景气度",
+      "sector": "综合指数",
+      "indicator_type": "指数",
+      "unit": "指数",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "weighted_composite",
+      "calculation_method": "weighted_composite",
+      "components": [
+        "CYCLE_CHEM_SODA_ASH_PRODUCTION",
+        "CYCLE_CHEM_PESTICIDE_PRODUCTION",
+        "CYCLE_COAL_THERMAL_PRICE"
+      ],
+      "weights": [0.4, 0.3, 0.3],
+      "investment_significance": "周期行业综合景气度，经济周期判断",
+      "importance_level": 5,
+      "data_availability": "依赖组成指标",
+      "implementation_phase": 3
+    },
+    "CALC_SUPPLY_CHAIN_CONSTRUCTION": {
+      "id": "CALC_SUPPLY_CHAIN_CONSTRUCTION",
+      "name_cn": "建筑产业链指数",
+      "name_en": "Construction Supply Chain Index",
+      "category": "计算指标",
+      "sub_category": "产业链指数",
+      "sector": "供应链传导",
+      "indicator_type": "指数",
+      "unit": "指数",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "supply_chain_composite",
+      "calculation_method": "supply_chain_composite",
+      "components": [
+        "MFG_MACHINERY_EXCAVATOR_SALES",
+        "MFG_MACHINERY_CRANE_SALES",
+        "CYCLE_CHEM_SODA_ASH_PRODUCTION"
+      ],
+      "weights": [0.4, 0.3, 0.3],
+      "investment_significance": "建筑全产业链景气度，基建房地产投资",
+      "importance_level": 4,
+      "data_availability": "依赖组成指标",
+      "implementation_phase": 3
+    },
+    "CALC_PRICE_TRANSMISSION_INDEX": {
+      "id": "CALC_PRICE_TRANSMISSION_INDEX",
+      "name_cn": "行业价格传导指数",
+      "name_en": "Industry Price Transmission Index",
+      "category": "计算指标",
+      "sub_category": "价格传导",
+      "sector": "成本传导",
+      "indicator_type": "指数",
+      "unit": "指数",
+      "frequency": "monthly",
+      "data_source": "calculated",
+      "api_function": "price_transmission_composite",
+      "calculation_method": "price_transmission_composite",
+      "components": [
+        "CYCLE_COAL_THERMAL_PRICE",
+        "TMT_COMM_OPTICAL_MODULE_PPI",
+        "CONSUMER_AGRI_RICE_PRICE"
+      ],
+      "weights": [0.4, 0.3, 0.3],
+      "investment_significance": "上下游价格传导路径，通胀压力分析",
+      "importance_level": 4,
+      "data_availability": "依赖组成指标",
+      "implementation_phase": 3
+    }
+  },
+  "api_mapping": {
+    "macro_china_ppi": {
+      "description": "工业品出厂价格指数",
+      "data_type": "价格指数",
+      "frequency": "monthly",
+      "source": "国家统计局"
+    },
+    "macro_china_industrial_production_yoy": {
+      "description": "工业增加值同比",
+      "data_type": "生产数据",
+      "frequency": "monthly",
+      "source": "国家统计局"
+    },
+    "macro_china_consumer_goods_retail": {
+      "description": "消费品零售总额",
+      "data_type": "消费数据",
+      "frequency": "monthly",
+      "source": "国家统计局"
+    },
+    "macro_china_fixed_asset_investment": {
+      "description": "固定资产投资",
+      "data_type": "投资数据",
+      "frequency": "monthly",
+      "source": "国家统计局"
+    },
+    "macro_china_cpi": {
+      "description": "消费者价格指数",
+      "data_type": "价格指数",
+      "frequency": "monthly",
+      "source": "国家统计局"
+    },
+    "energy_oil_hist": {
+      "description": "能源价格历史数据",
+      "data_type": "能源数据",
+      "frequency": "daily",
+      "source": "能源局"
+    },
+    "futures_main_sina": {
+      "description": "主力合约数据",
+      "data_type": "期货数据",
+      "frequency": "daily",
+      "source": "新浪财经"
+    },
+    "macro_china_postal_telecommunicational": {
+      "description": "邮电业务量",
+      "data_type": "行业数据",
+      "frequency": "monthly",
+      "source": "工信部"
+    },
+    "macro_china_insurance": {
+      "description": "保险业务数据",
+      "data_type": "金融数据",
+      "frequency": "monthly",
+      "source": "银保监会"
+    },
+    "energy_oil_detail": {
+      "description": "能源详细数据",
+      "data_type": "能源数据",
+      "frequency": "daily",
+      "source": "能源局"
+    }
+  },
+  "implementation_phases": {
+    "phase_1": {
+      "name": "第一阶段：核心指标",
+      "target_indicators": 230,
+      "duration": "3-4周",
+      "focus": "TMT、周期、消费行业主要指标",
+      "deliverable": "基础数据获取和存储",
+      "priority_indicators": [
+        "TMT_COMM_OPTICAL_MODULE_PPI",
+        "TMT_ELEC_IC_PRODUCTION",
+        "CYCLE_CHEM_SODA_ASH_PRODUCTION",
+        "CYCLE_COAL_THERMAL_PRICE",
+        "CYCLE_TRANSPORT_EXPRESS_DELIVERY",
+        "CONSUMER_AGRI_RICE_PRICE",
+        "MFG_MACHINERY_EXCAVATOR_SALES"
+      ]
+    },
+    "phase_2": {
+      "name": "第二阶段：扩展指标",
+      "target_indicators": 834,
+      "duration": "4-5周",
+      "focus": "完善各行业指标体系",
+      "deliverable": "完整的行业指标数据库",
+      "priority_indicators": [
+        "TMT_ELEC_LAPTOP_SALES",
+        "CYCLE_CHEM_PESTICIDE_PRODUCTION",
+        "CONSUMER_FOOD_SNACK_SALES",
+        "MFG_MACHINERY_CRANE_SALES",
+        "MFG_POWER_INVESTMENT",
+        "PHARMA_HEALTHCARE_CPI",
+        "FINANCE_INSURANCE_PREMIUM"
+      ]
+    },
+    "phase_3": {
+      "name": "第三阶段：增强指标",
+      "target_indicators": 144,
+      "duration": "3-4周",
+      "focus": "计算指标和综合指数",
+      "deliverable": "完整的指标分析系统",
+      "priority_indicators": [
+        "CONSUMER_LIGHT_PRINTING_ELECTRICITY",
+        "CALC_TMT_PROSPERITY_INDEX",
+        "CALC_CYCLICAL_PROSPERITY_INDEX",
+        "CALC_SUPPLY_CHAIN_CONSTRUCTION",
+        "CALC_PRICE_TRANSMISSION_INDEX"
+      ]
+    }
+  },
+  "technical_specs": {
+    "data_architecture": {
+      "storage": ["PostgreSQL", "Redis", "ClickHouse"],
+      "computation": ["Python", "Pandas", "NumPy", "Scikit-learn"],
+      "api": ["Django REST Framework", "Celery"],
+      "frontend": ["React", "Chart.js", "Ant Design"]
+    },
+    "quality_control": {
+      "data_validation": "数据完整性和一致性检查",
+      "anomaly_detection": "异常值识别和处理",
+      "data_cleaning": "数据格式标准化",
+      "update_monitoring": "数据源更新状态监控"
+    }
+  }
+}
